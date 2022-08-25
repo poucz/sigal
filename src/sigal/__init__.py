@@ -34,6 +34,7 @@ from .gallery import Gallery
 from .log import init_logging
 from .settings import read_settings
 from .utils import copy
+from .serve import photoServer
 
 try:
     from .version import __version__
@@ -237,6 +238,9 @@ def init_plugins(settings):
 )
 def serve(destination, port, config):
     """Run a simple web server."""
+    
+    
+    
     if os.path.exists(destination):
         pass
     elif os.path.exists(config):
@@ -254,20 +258,8 @@ def serve(destination, port, config):
             f"and the config file ({config}) could not be read.\n"
         )
         sys.exit(2)
-
-    print(f'DESTINATION : {destination}')
-    os.chdir(destination)
-    Handler = server.SimpleHTTPRequestHandler
-    httpd = socketserver.TCPServer(("", port), Handler, False)
-    print(f" * Running on http://127.0.0.1:{port}/")
-
-    try:
-        httpd.allow_reuse_address = True
-        httpd.server_bind()
-        httpd.server_activate()
-        httpd.serve_forever()
-    except KeyboardInterrupt:
-        print('\nAll done!')
+        
+    photoServer(port)
 
 
 @main.command()

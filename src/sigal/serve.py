@@ -20,7 +20,7 @@ def delSingleFile(file_path):
 		print("File "+file_path+" not found")
 
 
-def addTag2Foto(foto,tag):
+def toggleTag2Foto(foto,tag):
 	#load
 	try:
 		f= open('data.json')
@@ -31,7 +31,12 @@ def addTag2Foto(foto,tag):
 	#change
 	if not foto in  data:
 		data[foto]=[]
-	data[foto].append(tag)
+	
+	#toggle tag from foto (add or remove if exist)
+	if tag not in data[foto]: 
+		data[foto].append(tag)
+	else:
+		data[foto].remove(tag)
 	
 	#write
 	json_data = json.dumps(data, sort_keys=True,indent=4)
@@ -42,7 +47,7 @@ def addTag2Foto(foto,tag):
 
 def delFile(fileDir,fileName):
 	file_path=fileDir+fileName
-	addTag2Foto(file_path,"delete")
+	toggleTag2Foto(file_path,"delete")
 	#delSingleFile(fileDir+fileName)
 	#delSingleFile(fileDir+"thumbnails/"+fileName)
 	#delSingleFile(config["runDir"]+config["source"]+"/"+fileDir+fileName)
@@ -148,12 +153,15 @@ def readConfig():
     #print("Config:"+str(config))
 
 
-def main():
+def photoServer(port):
 	readConfig()
 	if not 'destination' in  config:
 		config['destination']="_build"
 	config["runDir"]=os.getcwd()+"/"
-	serve(config['destination'],8000,"nic")
+	serve(config['destination'],port,"nic")
+
+def main():
+	photoServer()
 	
 
 

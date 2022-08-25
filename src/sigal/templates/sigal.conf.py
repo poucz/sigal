@@ -22,7 +22,7 @@ source = 'foto'
 # Theme :
 # - colorbox (default), galleria, photoswipe, or the path to a custom theme
 # directory
-theme = 'theme = 'pou''
+theme = 'pou'
 
 # Theme for galleria (https://galleriajs.github.io/themes/)
 # galleria_theme = 'classic'
