@@ -65,6 +65,8 @@ img_size = (800, 600)
 # File extensions that should be treated as images
 # img_extensions = ['.jpg', '.jpeg', '.png', '.gif']
 
+img_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.orf']
+
 # Pilkit processor used to resize the image
 # (see http://pilkit.readthedocs.org/en/latest/#processors)
 # - ResizeToFit: fit the image within the specified dimensions (default)
@@ -279,7 +281,9 @@ ignore_files = []
 #     'sigal.plugins.watermark',
 #     'sigal.plugins.zip_gallery',
 # ]
-
+plugins = [
+       'sigal.plugins.lrp',
+]
 # Adjust the image after resizing it. A default value of 1.0 leaves the images
 # untouched.
 # adjust_options = {'color': 1.0,
@@ -326,3 +330,8 @@ ignore_files = []
 # zip_media_format = 'resized'  # 'resized' or 'orig'
 # zip_skip_if_exists = False # Skip archive generation if archive is
 # already present. Warning: new photos in an album won't be added to archive
+
+
+#ldr plugin - convert raw to jpeg
+#temp directory for extract img from raw
+#ldrTempDir="/tmp/rawTempSigal"

@@ -40,7 +40,10 @@ def pouTest(gallery):
 
 
 def register(settings):
-    logger.info('INIT lite raw plugin')
+    global tempDir
+    if settings.get('ldrTempDir'):
+       tempDir=settings.get('ldrTempDir')
+    logger.info('INIT lite raw plugin - temp dir: '+tempDir)
     os.system("rm -rf "+tempDir)
     os.makedirs(tempDir)
     signals.media_initialized.connect(pouTest)
