@@ -178,9 +178,11 @@
 			},
 			_deleteFile = function () {
 				var deleteFile=window.location.href
+				var server=window.location.href
 				deleteFile=deleteFile.replace(/.*localhost[^\/]*\/([^#]*).*/g,"$1")
+				server=server.replace(/.*(localhost[^\/]*)\/[^#]*.*/g,"$1")
 				
-				var request = new Request('http://localhost:8000?deleteDir='+deleteFile+"&deleteFile="+pswp.currItem.src);
+				var request = new Request('http://'+server+'?deleteDir='+deleteFile+"&deleteFile="+pswp.currItem.src);
 				fetch(request) 
 				.then(resp => { 
 					//location.reload(); 
